@@ -65,4 +65,8 @@ public class Schueler{
 	public int getSchuelernummer() {
 		return schuelernummer;
 	}
+
+    public String ausgabe() {
+		return String.format("Vorname: %s\nNachname: %s\nGeburtstag: %s\nSpruch: %s", getVorname(), getNachname(), getGeburtstag(), getSpruch() );
+	}
 }
