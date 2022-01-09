@@ -47,13 +47,23 @@ public class GUI extends JFrame {
 		anlegen = new JButton("Hinzufügen");
 		anlegen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-				
+                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert bereits oder ist ungültig");
+                } else {
+			    	newJahrbuch.eintragen(txtVorname.getText(), txtNachname.getText(), txtGeburtstag.getText(), Integer.parseInt(txtSchuelernummer.getText()));
+				    newJahrbuch.spruchAnpassen(newJahrbuch.getCurrentSchueler(), txtSpruch.getText());
+                }
 			}
 		});
 		ausgabe = new JButton("Ausgeben:");
 		ausgabe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
+                    txtAusgabe.setText(newJahrbuch.ausgeben(Integer.parseInt(txtSchuelernummer.getText())));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert nicht oder ist ungültig");
+                }
+                
 			}
 			
 		});
