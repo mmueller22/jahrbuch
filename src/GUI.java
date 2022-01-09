@@ -1,5 +1,102 @@
-public class GUI {
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class GUI extends JFrame {
+
+    JPanel panel;
+	
+	JButton anlegen;
+	JButton ausgabe;
+	
+	JLabel lblVorname;
+	JLabel lblNachname;
+	JLabel lblGeburtstag;
+	JLabel lblSpruch;
+	JLabel lblSchuelernummer;
+	
+	JTextField txtVorname;
+	JTextField txtNachname;
+	JTextField txtGeburtstag;
+	JTextField txtSpruch;
+	JTextArea  txtAusgabe;
+	JTextField txtSchuelernummer;
+	
+	Jahrbuch newJahrbuch;
+
+    public GUI(String title, int x, int y) {
+		super.setTitle(title);
+		setSize(x,y);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(null);
+		panel = new JPanel();
+		
+		lblVorname = new JLabel("Vorname:");
+		lblNachname = new JLabel("Nachname:");
+		lblGeburtstag = new JLabel("Geburtstag:");
+		lblSpruch = new JLabel("Spruch:");
+		lblSchuelernummer = new JLabel("Schülernummer:");
+		
+		txtVorname = new JTextField();
+		txtNachname = new JTextField();
+		txtGeburtstag = new JTextField();
+		txtSpruch = new JTextField();
+		txtAusgabe = new JTextArea();
+		txtSchuelernummer = new JTextField();
+		
+		anlegen = new JButton("Hinzufügen");
+		anlegen.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		ausgabe = new JButton("Ausgeben:");
+		ausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+			}
+			
+		});
+		
+		lblVorname.setBounds(10, 10, 100, 25);
+		lblNachname.setBounds(10, 40, 100, 25);
+		lblGeburtstag.setBounds(10, 70, 100, 25);
+		lblSpruch.setBounds(10, 100, 100, 25);
+		lblSchuelernummer.setBounds(10, 130, 150, 25);
+		
+		txtVorname.setBounds(150, 10, 100, 25);
+		txtNachname.setBounds(150, 40, 100, 25);
+		txtGeburtstag.setBounds(150, 70, 100, 25);
+		txtSpruch.setBounds(150, 100, 100, 25);
+		txtAusgabe.setBounds(10, 200, 190, 100);
+		txtSchuelernummer.setBounds(150, 130, 100, 25);
+		
+		anlegen.setBounds(10, 160, 200, 25);
+		ausgabe.setBounds(10, 310, 200, 25);
+		
+		add(lblVorname);
+		add(lblNachname);
+		add(lblGeburtstag);
+		add(lblSpruch);
+		add(lblSchuelernummer);
+		
+		add(txtVorname);
+		add(txtNachname);
+		add(txtGeburtstag);
+		add(txtSpruch);
+		add(txtAusgabe);
+		add(txtSchuelernummer);
+		
+		add(anlegen);
+		add(ausgabe);
+
+		add(panel);
+		
+	}
     public static void main(String[] args) {
+        GUI newGUI = new GUI("Jahrbuch", 500, 500);
+        newGUI.newJahrbuch = new Jahrbuch(100);
+		newGUI.setVisible(true);
         
     }
 }
