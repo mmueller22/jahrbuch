@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class GUI extends JFrame {
 
@@ -28,9 +30,25 @@ public class GUI extends JFrame {
 		super.setTitle(title);
 		setSize(x,y);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter(){
+			public void windowOpened(WindowEvent e) {
+				File newFile = new File();
+				newJahrbuch = newFile.readFile("src/test.ser");
+			}
+			public void windowClosing(WindowEvent e) {
+				File newFile = new File();
+				newFile.saveFile("test", newJahrbuch);
+			}
+		  });
 		setLayout(null);
 		panel = new JPanel();
 		
+		createElements();
+
+		add(panel);
+		
+	}
+	private void createElements(){
 		lblVorname = new JLabel("Vorname:");
 		lblNachname = new JLabel("Nachname:");
 		lblGeburtstag = new JLabel("Geburtstag:");
@@ -45,28 +63,10 @@ public class GUI extends JFrame {
 		txtSchuelernummer = new JTextField();
 		
 		anlegen = new JButton("Hinzufügen");
-		anlegen.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e) {
-                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
-                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert bereits oder ist ungültig");
-                } else {
-			    	newJahrbuch.eintragen(txtVorname.getText(), txtNachname.getText(), txtGeburtstag.getText(), Integer.parseInt(txtSchuelernummer.getText()));
-				    newJahrbuch.spruchAnpassen(newJahrbuch.getCurrentSchueler(), txtSpruch.getText());
-                }
-			}
-		});
+		anlegen();
+
 		ausgabe = new JButton("Ausgeben:");
-		ausgabe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
-                    txtAusgabe.setText(newJahrbuch.ausgeben(Integer.parseInt(txtSchuelernummer.getText())));
-                } else {
-                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert nicht oder ist ungültig");
-                }
-                
-			}
-			
-		});
+		ausgeben();
 		
 		lblVorname.setBounds(10, 10, 100, 25);
 		lblNachname.setBounds(10, 40, 100, 25);
@@ -99,13 +99,37 @@ public class GUI extends JFrame {
 		
 		add(anlegen);
 		add(ausgabe);
+	}
 
-		add(panel);
-		
+	private void anlegen(){
+		anlegen.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
+                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert bereits oder ist ungültig");
+                } else {
+			    	newJahrbuch.eintragen(txtVorname.getText(), txtNachname.getText(), txtGeburtstag.getText(), Integer.parseInt(txtSchuelernummer.getText()));
+				    newJahrbuch.spruchAnpassen(newJahrbuch.getCurrentSchueler(), txtSpruch.getText());
+                }
+			}
+		});
+	}
+
+	private void ausgeben(){
+		ausgabe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+                if (newJahrbuch.schuelernummerExistent(Integer.parseInt(txtSchuelernummer.getText()))) {
+                    txtAusgabe.setText(newJahrbuch.ausgeben(Integer.parseInt(txtSchuelernummer.getText())));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Die eingegebene Schülernummer existiert nicht oder ist ungültig");
+                }
+                
+			}
+			
+		});
 	}
     public static void main(String[] args) {
-        GUI newGUI = new GUI("Jahrbuch", 500, 500);
-        newGUI.newJahrbuch = new Jahrbuch(100);
+        GUI newGUI = new GUI("Jahrbuch", 500,500);
+		newGUI.newJahrbuch = new Jahrbuch(100);
 		newGUI.setVisible(true);
         
     }

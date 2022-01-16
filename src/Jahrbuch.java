@@ -1,6 +1,7 @@
-public class Jahrbuch {
+public class Jahrbuch implements java.io.Serializable {
     private Schueler[] schuelerliste;
 	private int groesse;
+	public int test;
 
     public Jahrbuch() {
 		
@@ -53,6 +54,4 @@ public class Jahrbuch {
 		}
 		return -1;
 	}
-	
-	
 }
