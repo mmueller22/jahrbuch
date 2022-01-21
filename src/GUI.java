@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
 
 public class GUI extends JFrame {
 
@@ -34,12 +33,12 @@ public class GUI extends JFrame {
 		addWindowListener(new WindowAdapter(){
 			Storage newFileStorage = new Storage();
 			public void windowOpened(WindowEvent e) {
-				if(newFileStorage.fileAvailable("tmp/test.ser")){
-					newJahrbuch = newFileStorage.readFile("tmp/test.ser");
+				if(newFileStorage.fileAvailable("tmp/")){
+					newJahrbuch = newFileStorage.readFile("tmp/");
 				}
 			}
 			public void windowClosing(WindowEvent e) {
-				newFileStorage.saveFile("test", newJahrbuch);
+				newFileStorage.saveFile(newJahrbuch);
 			}
 		  });
 		setLayout(null);
