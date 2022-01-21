@@ -4,16 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Storage {
-    public boolean saveFile(String name, Jahrbuch object) {
+    public boolean saveFile(Jahrbuch object) {
 		try{
-			FileOutputStream fileOut = new FileOutputStream(String.format("tmp/%s.ser", name));
+			FileOutputStream fileOut = new FileOutputStream(String.format("tmp/session %s.ser", getTime()));
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(object);
 			out.close();
 			fileOut.close();
-			System.out.println(String.format("Serialized data is saved in tmp/%s.ser", name));
+			System.out.println(String.format("Serialized data is saved in %s", chooseFile("tmp")));
 			return true;
       } catch (IOException i) {
          i.printStackTrace();
@@ -21,9 +23,9 @@ public class Storage {
       }
 	}
 
-    public Jahrbuch readFile(String path) {
+    public Jahrbuch readFile(String directory) {
 		try {
-			FileInputStream fileIn = new FileInputStream(path);
+			FileInputStream fileIn = new FileInputStream(chooseFile(directory));
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			Jahrbuch object = (Jahrbuch) in.readObject();
 			in.close();
@@ -39,12 +41,26 @@ public class Storage {
 		 }
 		
 	}
-	public boolean fileAvailable(String path){
-		File newFile = new File(path);
-		if (newFile.isFile()) {
-			return true;
+	public boolean fileAvailable(String directory){
+			File newFile = new File(chooseFile(directory));
+			if (newFile.isFile()) {
+				return true;
+			} else {
+				return false;
+			}
+	}
+	private String chooseFile(String directory){
+		String[] allfiles = new File(directory).list();
+		if (allfiles.length > 1) {
+			return directory + allfiles[1];
 		} else {
-			return false;
+			return directory;
 		}
+		
+	}
+	private String getTime(){
+		LocalDateTime dateAndTime = LocalDateTime.now();
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm.ss");
+		return dateAndTime.format(dateTimeFormatter);
 	}
 }
