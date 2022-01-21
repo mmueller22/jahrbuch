@@ -1,4 +1,6 @@
-public class Schueler{
+import java.io.Serializable;
+
+public class Schueler implements Serializable {
     private String vorname;
 	private String nachname;
 	private String geburtstag;
