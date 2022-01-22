@@ -18,8 +18,8 @@ public class Storage {
 			System.out.println(String.format("Serialized data is saved in %s", chooseFile("tmp")));
 			return true;
       } catch (IOException i) {
-         i.printStackTrace();
-		 return false;
+         	i.printStackTrace();
+		 	return false;
       }
 	}
 
@@ -52,7 +52,7 @@ public class Storage {
 	private String chooseFile(String directory){
 		String[] allfiles = new File(directory).list();
 		if (allfiles.length > 1) {
-			return directory + allfiles[1];
+			return directory + allfiles[allfiles.length-1];
 		} else {
 			return directory;
 		}
@@ -60,7 +60,7 @@ public class Storage {
 	}
 	private String getTime(){
 		LocalDateTime dateAndTime = LocalDateTime.now();
-		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH.mm.ss");
+		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 		return dateAndTime.format(dateTimeFormatter);
 	}
 }
