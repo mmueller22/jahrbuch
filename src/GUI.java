@@ -6,27 +6,27 @@ import java.awt.event.WindowEvent;
 
 public class GUI extends JFrame {
 
-    JPanel panel;
+    private JPanel panel;
 	
-	JButton anlegen;
-	JButton ausgabe;
+	private JButton anlegen;
+	private JButton ausgabe;
 	
-	JLabel lblVorname;
-	JLabel lblNachname;
-	JLabel lblGeburtstag;
-	JLabel lblSpruch;
-	JLabel lblSchuelernummer;
+	private JLabel lblVorname;
+	private JLabel lblNachname;
+	private JLabel lblGeburtstag;
+	private JLabel lblSpruch;
+	private JLabel lblSchuelernummer;
 	
-	JTextField txtVorname;
-	JTextField txtNachname;
-	JTextField txtGeburtstag;
-	JTextField txtSpruch;
-	JTextArea  txtAusgabe;
-	JTextField txtSchuelernummer;
+	private JTextField txtVorname;
+	private JTextField txtNachname;
+	private JTextField txtGeburtstag;
+	private JTextField txtSpruch;
+	private JTextArea  txtAusgabe;
+	private JTextField txtSchuelernummer;
 	
-	Jahrbuch newJahrbuch;
+	private Jahrbuch newJahrbuch;
 
-    public GUI(String title, int x, int y) {
+    private GUI(String title, int x, int y) {
 		super.setTitle(title);
 		setSize(x,y);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,6 +49,7 @@ public class GUI extends JFrame {
 		add(panel);
 		
 	}
+	
 	private void createElements(){
 		lblVorname = new JLabel("Vorname:");
 		lblNachname = new JLabel("Nachname:");
@@ -132,6 +133,5 @@ public class GUI extends JFrame {
         GUI newGUI = new GUI("Jahrbuch", 500,500);
 		newGUI.newJahrbuch = new Jahrbuch(100);
 		newGUI.setVisible(true);
-        
     }
 }

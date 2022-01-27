@@ -21,6 +21,7 @@ public class Schueler implements Serializable {
 	public void setVorname(String newVorname) {
 		vorname = newVorname;
 	}
+
 	public String getVorname() {
 		if (vorname == null || vorname.isEmpty()) {
 			return "Kein oder ungültiger Name eingegeben";
@@ -32,6 +33,7 @@ public class Schueler implements Serializable {
 	public void setNachname(String newNachname) {
 		nachname = newNachname;
 	}
+
 	public String getNachname() {
 		if (nachname == null || nachname.isEmpty()) {
 			return "Kein oder ungültiger Name eingegeben";
@@ -43,6 +45,7 @@ public class Schueler implements Serializable {
 	public void setGeburtstag(String newGeburtstag) {
 		geburtstag = newGeburtstag;
 	}
+
 	public String getGeburtstag() {
 		if (geburtstag == null || geburtstag.isEmpty()) {
 			return "Kein oder ungültiger Geburtstag eingegeben";
@@ -54,6 +57,7 @@ public class Schueler implements Serializable {
 	public void setSpruch(String newSpruch) {
 		spruch = newSpruch;
 	}
+
 	public String getSpruch() {
 		if (spruch == null || spruch.isEmpty()) {
 			return "Kein oder ungültiger Spruch eingegeben";
@@ -61,9 +65,11 @@ public class Schueler implements Serializable {
 			return spruch;
 		}
 	}
+
 	public void setSchülernummer(int newSchuelernummer) {
 		schuelernummer = newSchuelernummer;
 	}
+	
 	public int getSchuelernummer() {
 		return schuelernummer;
 	}

@@ -41,6 +41,7 @@ public class Storage {
 		 }
 		
 	}
+
 	public boolean fileAvailable(String directory){
 			File newFile = new File(chooseFile(directory));
 			if (newFile.isFile()) {
@@ -49,6 +50,7 @@ public class Storage {
 				return false;
 			}
 	}
+
 	private String chooseFile(String directory){
 		String[] allfiles = new File(directory).list();
 		if (allfiles.length > 1) {
@@ -56,8 +58,8 @@ public class Storage {
 		} else {
 			return directory;
 		}
-		
 	}
+
 	private String getTime(){
 		LocalDateTime dateAndTime = LocalDateTime.now();
 		DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
